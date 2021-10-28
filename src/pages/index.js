@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 
+import { Button } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
 
 export default function Home() {
@@ -45,36 +51,36 @@ export default function Home() {
   };
 
   return (
-    <div>
-      <label>
-        <h1>Translator </h1>
-        <input
-          type="text"
-          placeholder="Type text to translate"
-          onChange={(e) => setIncomingText(e.target.value)}
-        />
-      </label>
-      <br />
-      <br />
-      <br />
-      <select onChange={languageKey}>
-        <option>Please Select Language..</option>
+    <div className="test">
+      <h1>Translator </h1>
+<div className="items">
+      <TextField
+        id="standard-basic"
+        label="Type text to translate"
+        variant="standard"
+        onChange={(e) => setIncomingText(e.target.value)}
+      />
+</div><div className="items">
+      <Select
+        labelId="demo-simple-select-label"
+        id="demo-simple-select"
+        label="Select language"
+        onChange={languageKey}
+      >
         {supportedLanguage.map((language, index) => {
           return (
-            <option key={index} value={language.code}>
+            <MenuItem key={index} value={language.code}>
               {language.name}
-            </option>
+            </MenuItem>
           );
         })}
-      </select>
-      <br />
-      <br />
-      <br />
+      </Select>
+      </div><div className="items">
       {translatedText}
-      <br />
-      <br />
-      <br />
-      <button onClick={translateText}>Translate</button>
+      </div><div className="items">
+      <Button variant="contained" onClick={translateText}>
+        Translate
+      </Button></div>
     </div>
   );
 }
